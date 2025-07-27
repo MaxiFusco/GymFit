@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GYMFIT - Iniciar Sesión</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Kalam", cursive;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(100, 100, 100, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(150, 150, 150, 0.2) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 60% 40%,
+            rgba(120, 120, 120, 0.25) 0%,
+            transparent 50%
+          ),
+          #2d2d2d;
+        background-size:
+          100% 100%,
+          400px 400px,
+          600px 600px,
+          300px 300px,
+          100% 100%;
+        background-position:
+          center,
+          20% 30%,
+          80% 70%,
+          60% 40%,
+          center;
+        background-attachment: fixed;
+        min-height: 100vh;
+        color: white;
+      }
+
+      .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 24px;
+        position: relative;
+      }
+
+      .back-button {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.15s;
+        z-index: 10;
+      }
+
+      .back-button:hover {
+        background-color: #dc2626;
+      }
+
+      .logo-section {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .logo {
+        font-size: 80px;
+        font-weight: 700;
+        letter-spacing: 4.8px;
+        line-height: 80px;
+      }
+
+      .form-container {
+        width: 100%;
+        max-width: 384px;
+        background-color: white;
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+
+      .form-title {
+        color: black;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+      }
+
+      .form-label {
+        display: block;
+        color: #6b7280;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .form-input {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #d1d5db;
+        padding-bottom: 8px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.15s;
+        background: transparent;
+      }
+
+      .form-input:focus {
+        border-bottom-color: #ef4444;
+      }
+
+      .submit-button {
+        width: 100%;
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 9999px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.15s;
+        margin-top: 32px;
+      }
+
+      .submit-button:hover {
+        background-color: #dc2626;
+      }
+
+      @media (max-width: 768px) {
+        .logo {
+          font-size: 60px;
+          line-height: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="back-button" onclick="goBack()">VOLVER</button>
+
+      <div class="logo-section">
+        <h1 class="logo">GYMFIT</h1>
+      </div>
+
+      <div class="form-container">
+        <h2 class="form-title">INICIO DE SESIÓN</h2>
+
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label class="form-label">Email:</label>
+            <input type="email" class="form-input" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Contraseña:</label>
+            <input type="password" class="form-input" required />
+          </div>
+
+          <button type="submit" class="submit-button">INGRESAR</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.location.href = "auth.html";
+      }
+
+      function handleLogin(event) {
+        event.preventDefault();
+        // Aquí puedes agregar la lógica de autenticación
+        alert("Inicio de sesión exitoso!");
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GYMFIT - Plan 1</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Kalam", cursive;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(100, 100, 100, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(150, 150, 150, 0.2) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 60% 40%,
+            rgba(120, 120, 120, 0.25) 0%,
+            transparent 50%
+          ),
+          #2d2d2d;
+        background-size:
+          100% 100%,
+          400px 400px,
+          600px 600px,
+          300px 300px,
+          100% 100%;
+        background-position:
+          center,
+          20% 30%,
+          80% 70%,
+          60% 40%,
+          center;
+        background-attachment: fixed;
+        min-height: 100vh;
+        color: white;
+      }
+
+      .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 24px;
+        position: relative;
+      }
+
+      .back-button {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.15s;
+        z-index: 10;
+      }
+
+      .back-button:hover {
+        background-color: #dc2626;
+      }
+
+      .logo-section {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .logo {
+        font-size: 64px;
+        font-weight: 700;
+        letter-spacing: 4.8px;
+        line-height: 64px;
+      }
+
+      .content-section {
+        width: 100%;
+        max-width: 384px;
+      }
+
+      .plan-title {
+        color: white;
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+
+      .plan-content {
+        background-color: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .plan-text {
+        color: black;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .logo {
+          font-size: 48px;
+          line-height: 48px;
+        }
+
+        .plan-title {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="back-button" onclick="goBack()">VOLVER</button>
+
+      <div class="logo-section">
+        <h1 class="logo">GYMFIT</h1>
+      </div>
+
+      <div class="content-section">
+        <h2 class="plan-title">Plan 1</h2>
+
+        <div class="plan-content">
+          <p class="plan-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa officia deserunt mollit anim id est laboru
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.location.href = "diets.html";
+      }
+    </script>
+  </body>
+</html>

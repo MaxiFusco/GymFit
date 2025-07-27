@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GYMFIT - Productos</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Kalam", cursive;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(100, 100, 100, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(150, 150, 150, 0.2) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 60% 40%,
+            rgba(120, 120, 120, 0.25) 0%,
+            transparent 50%
+          ),
+          #2d2d2d;
+        background-size:
+          100% 100%,
+          400px 400px,
+          600px 600px,
+          300px 300px,
+          100% 100%;
+        background-position:
+          center,
+          20% 30%,
+          80% 70%,
+          60% 40%,
+          center;
+        background-attachment: fixed;
+        min-height: 100vh;
+        color: white;
+      }
+
+      .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 0 24px;
+        position: relative;
+      }
+
+      .back-button {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.15s;
+        z-index: 10;
+      }
+
+      .back-button:hover {
+        background-color: #dc2626;
+      }
+
+      .logo-section {
+        text-align: center;
+        padding-top: 64px;
+        margin-bottom: 32px;
+      }
+
+      .logo {
+        font-size: 64px;
+        font-weight: 700;
+        letter-spacing: 4.8px;
+        line-height: 64px;
+      }
+
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .products-container {
+        width: 100%;
+        max-width: 384px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .product-card {
+        background-color: white;
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .product-image-container {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product-image {
+        width: 64px;
+        height: 80px;
+        background-color: #fb923c;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 4px;
+      }
+
+      .product-size-badge {
+        background-color: #fb923c;
+        color: white;
+        font-size: 10px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        text-align: center;
+        line-height: 1;
+      }
+
+      .product-info {
+        flex: 1;
+      }
+
+      .product-name {
+        color: black;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      .product-description {
+        color: #6b7280;
+        font-size: 12px;
+      }
+
+      .consult-button {
+        width: 100%;
+        max-width: 384px;
+        margin: 32px auto 0;
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        padding: 16px 24px;
+        border-radius: 9999px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.15s;
+      }
+
+      .consult-button:hover {
+        background-color: #dc2626;
+      }
+
+      @media (max-width: 768px) {
+        .logo {
+          font-size: 48px;
+          line-height: 48px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="back-button" onclick="goBack()">VOLVER</button>
+
+      <div class="logo-section">
+        <h1 class="logo">GYMFIT</h1>
+      </div>
+
+      <div class="content">
+        <div class="products-container">
+          <div class="product-card">
+            <div class="product-image-container">
+              <div class="product-image">🧃</div>
+              <div class="product-size-badge">1<br />Litro</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Cepiła sabor Naranja</h3>
+              <p class="product-description">1 Litro</p>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-container">
+              <div class="product-image">🧃</div>
+              <div class="product-size-badge">1<br />Litro</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Cepiła sabor Naranja</h3>
+              <p class="product-description">1 Litro</p>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image-container">
+              <div class="product-image">🧃</div>
+              <div class="product-size-badge">1<br />Litro</div>
+            </div>
+            <div class="product-info">
+              <h3 class="product-name">Cepiła sabor Naranja</h3>
+              <p class="product-description">1 Litro</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="consult-button" onclick="handleConsult()">
+          CONSULTAR
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.location.href = "index.html";
+      }
+
+      function handleConsult() {
+        alert("Consulta enviada exitosamente!");
+      }
+    </script>
+  </body>
+</html>
