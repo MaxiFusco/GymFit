@@ -17,6 +17,7 @@ interface AuthContextType {
   error: string | null;
 }
 
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 interface AuthProviderProps {
@@ -29,16 +30,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [error, setError] = useState<string | null>(null);
 
   const isAuthenticated = !!user;
+  
+useEffect(() => {
+  const token = localStorage.getItem("gymfit_token");
+  const storedUser = localStorage.getItem("gymfit_user");
 
-  // Check if user is already logged in on app start
-  useEffect(() => {
-    const token = localStorage.getItem("gymfit_token");
-    if (token) {
-      // You might want to validate the token with the backend here
-      // For now, we'll just set loading to false
-    }
-    setIsLoading(false);
-  }, []);
+  if (token && storedUser) {
+    apiClient.setToken(token);
+    setUser(JSON.parse(storedUser));
+  }
+  setIsLoading(false);
+}, []);
 
   const login = async (credentials: LoginRequest) => {
     try {
@@ -51,6 +53,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const { user, token } = response.data;
         apiClient.setToken(token);
         setUser(user);
+        localStorage.setItem("gymfit_user", JSON.stringify(user));
       } else {
         throw new Error(response.error || "Login failed");
       }
@@ -96,6 +99,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       console.error("Logout error:", err);
       // Clear local state even if API call fails
       setUser(null);
+      localStorage.removeItem("gymfit_user");
       apiClient.clearToken();
     } finally {
       setIsLoading(false);

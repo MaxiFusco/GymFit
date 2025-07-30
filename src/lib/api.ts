@@ -17,6 +17,7 @@ export interface User {
   name: string;
   age: number;
   createdAt: string;
+  role?: string;
 }
 
 export interface LoginRequest {
@@ -116,15 +117,37 @@ class ApiClient {
         },
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // Leer el cuerpo como texto
+      const text = await response.text();
+
+      // Intentar parsear JSON
+      let data: ApiResponse<T>;
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        data = {
+          success: false,
+          message: text || "Respuesta inválida del servidor",
+        } as ApiResponse<T>;
       }
 
-      const data = await response.json();
+      if (!response.ok) {
+        // Si la respuesta no es OK, devolver error con mensaje
+        return {
+          success: false,
+          message: data.message || `Error HTTP: ${response.status}`,
+        } as ApiResponse<T>;
+      }
+
+      // Respuesta OK
       return data;
-    } catch (error) {
+
+    } catch (error: any) {
       console.error("API request failed:", error);
-      throw error;
+      return {
+        success: false,
+        message: error.message || "Error de red",
+      } as ApiResponse<T>;
     }
   }
 
@@ -178,6 +201,17 @@ class ApiClient {
   }
 
   async getDiet(id: number): Promise<ApiResponse<Diet>> {
+    return this.request<Diet>(`/diets/${id}`);
+  }
+
+  async updateDiet(diet: Diet): Promise<ApiResponse<Diet>> {
+    return this.request<Diet>(`/diets/${diet.id}`, {
+      method: "PUT",
+      body: JSON.stringify(diet),
+    });
+  }
+
+  async getDietById(id: number): Promise<ApiResponse<Diet>> {
     return this.request<Diet>(`/diets/${id}`);
   }
 

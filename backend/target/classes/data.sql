@@ -19,3 +19,6 @@ INSERT INTO PRODUCTS (ID, CATEGORY, DESCRIPTION, IMAGE_URL, NAME, PRICE, SIZE) V
 (3, 'Suplemento', 'Creatina monohidratada para fuerza y potencia', 'https://example.com/images/creatine.png', 'Creatina 300g', 19.99, '300g'),
 (4, 'Ropa', 'Camiseta deportiva de secado rápido', 'https://example.com/images/shirt.png', 'Camiseta DryFit', 24.99, 'L'),
 (5, 'Accesorio', 'Botella shaker con compartimento para suplementos', 'https://example.com/images/shaker.png', 'Shaker 600ml', 9.99, '600ml');
+
+INSERT INTO users (email, password, name, age, role) VALUES 
+('admin@gymfit.com', '$2a$12$PBH4W6ceIBv1O/G77kqP6eLz91k1s0bvvgnT4bH26GwtA7OCjzYvy', 'Administrador', 30, 'ADMIN');

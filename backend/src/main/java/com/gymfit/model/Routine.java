@@ -43,7 +43,6 @@ public class Routine {
         }
     }
     
-    // Constructors
     public Routine() {}
     
     public Routine(String title, String description, String content, Level level) {
@@ -53,7 +52,7 @@ public class Routine {
         this.level = level;
     }
     
-    // Getters and Setters
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     

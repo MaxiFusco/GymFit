@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { BackButton } from "../components/BackButton";
 import { useDiets } from "../hooks/useData";
+import { useAuth } from "../hooks/useAuth"; 
+
 
 export default function Diets() {
   const navigate = useNavigate();
   const { data: diets, isLoading, error } = useDiets();
+  const { user } = useAuth();
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 relative">
@@ -34,19 +38,28 @@ export default function Diets() {
           </div>
         )}
 
-        {diets &&
-          diets.map((diet) => (
-            <div
-              key={diet.id}
-              onClick={() => navigate(`/diet/${diet.id}`)}
-              className="bg-white rounded-2xl p-6 shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
-            >
-              <h3 className="text-black text-lg font-bold mb-2">
-                {diet.title}
-              </h3>
-              <p className="text-gray-600 text-sm">{diet.description}</p>
-            </div>
-          ))}
+  {diets &&
+  diets.map((diet) => (
+    <div
+      key={diet.id}
+      className="bg-white rounded-2xl p-6 shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+    >
+      <div onClick={() => navigate(`/diet/${diet.id}`)}>
+        <h3 className="text-black text-lg font-bold mb-2">{diet.title}</h3>
+        <p className="text-gray-600 text-sm">{diet.description}</p>
+      </div>
+
+      {user?.role === "ADMIN" && (
+        <button
+          onClick={() => navigate(`/diet/edit/${diet.id}`)}
+          className="mt-2 bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600"
+        >
+          Editar
+        </button>
+      )}
+    </div>
+  ))}
+
       </div>
     </div>
   );

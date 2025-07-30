@@ -25,12 +25,15 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     
+    @Column(name = "role")
+    private String role = "USER";
+
+    
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
     }
     
-    // Constructors
     public User() {}
     
     public User(String email, String password, String name, Integer age) {
@@ -40,7 +43,6 @@ public class User {
         this.age = age;
     }
     
-    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     
@@ -58,4 +60,13 @@ public class User {
     
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    
+    
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

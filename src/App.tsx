@@ -10,6 +10,8 @@ import Products from "./pages/Products";
 import RoutineDetail from "./pages/RoutineDetail";
 import DietDetail from "./pages/DietDetail";
 import NotFound from "./pages/NotFound";
+import EditDiet from "./pages/EditDiet";
+
 import "./App.css";
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
             <Route path="/routine/:id" element={<RoutineDetail />} />
             <Route path="/diet/:id" element={<DietDetail />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/diet/edit/:id" element={<EditDiet />} />
+
           </Routes>
         </div>
       </BrowserRouter>

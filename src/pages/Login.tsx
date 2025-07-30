@@ -14,8 +14,7 @@ export default function Login() {
   e.preventDefault();
   setLocalError(null);
 
-  console.log("Datos login enviados:", { email, password }); // <-- Log aquí
-
+  console.log("Datos login enviados:", { email, password }); 
   try {
     await login({ email, password });
     navigate("/");

@@ -11,7 +11,6 @@ public class ConsultationRequest {
         this.data = data;
     }
     
-    // Getters and Setters
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }
     

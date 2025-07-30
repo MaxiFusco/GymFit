@@ -5,11 +5,14 @@ import com.gymfit.dto.LoginRequest;
 import com.gymfit.dto.RegisterRequest;
 import com.gymfit.model.User;
 import com.gymfit.repository.UserRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class AuthService {
@@ -20,33 +23,33 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    public AuthResponse login(LoginRequest request) throws Exception {
-        User user = userRepository.findByEmail(request.getEmail());
-        
-        if (user == null) {
-            throw new Exception("Usuario no encontrado");
-        }
-        
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new Exception("Contraseña incorrecta");
-        }
-        
-        // Generar token JWT (simplificado - en producción usar JWT real)
-        String token = generateToken(user);
-        
-        // No devolver la contraseña en la respuesta
-        user.setPassword(null);
-        
-        return new AuthResponse(user, token);
+public AuthResponse login(LoginRequest request) {
+    Optional<User> userOpt = userRepository.findByEmail(request.getEmail());
+    
+    if (userOpt.isEmpty()) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario no encontrado");
+    }
+
+    User user = userOpt.get();
+    
+    if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Contraseña incorrecta");
     }
     
-    public AuthResponse register(RegisterRequest request) throws Exception {
-        // Verificar si el usuario ya existe
-        if (userRepository.findByEmail(request.getEmail()) != null) {
-            throw new Exception("El email ya está registrado");
-        }
+
+    String token = generateToken(user);
+    
+    user.setPassword(null); 
+    return new AuthResponse(user, token);
+}
+    
+    public AuthResponse register(RegisterRequest request) {
+    Optional<User> existingUser = userRepository.findByEmail(request.getEmail());
+    if (existingUser.isPresent()) {
+        throw new ResponseStatusException(HttpStatus.CONFLICT, "El email ya está registrado");
+    }
         
-        // Crear nuevo usuario
+   
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -59,15 +62,12 @@ public class AuthService {
         // Generar token
         String token = generateToken(user);
         
-        // No devolver la contraseña en la respuesta
-        user.setPassword(null);
-        
+        user.setPassword(null); 
+
         return new AuthResponse(user, token);
     }
     
     private String generateToken(User user) {
-        // En producción, usar JWT real con library como JJWT
-        // Por simplicidad, generamos un UUID
         return UUID.randomUUID().toString() + "_" + user.getId();
     }
 }
